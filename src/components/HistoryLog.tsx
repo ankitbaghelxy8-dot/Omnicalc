@@ -41,54 +41,6 @@ export default function HistoryLog({
 
   return (
     <div id="history-panel" className="flex flex-col h-full bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-      {/* Session Hub Header Section */}
-      {currentUser && (
-        <div className="p-4 border-b border-slate-100 bg-slate-50/70 shrink-0 select-none">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <div className="p-1.5 bg-slate-900 rounded-lg text-indigo-400">
-                <Calculator className="w-4 h-4" />
-              </div>
-              <div>
-                <h3 className="text-xs font-black font-sans text-slate-900 tracking-tight leading-none">
-                  OmniCalc Suite
-                </h3>
-                <span className="text-[9px] text-slate-400 font-mono">Workspace & Secure Vault</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1.5">
-              {isAdminLoggedIn && onToggleAdminView && (
-                <button
-                  onClick={onToggleAdminView}
-                  className="flex items-center gap-1 px-2 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-[10px] font-bold transition duration-150 shadow-sm cursor-pointer"
-                  title={isAdminView ? "Open Calculator" : "Admin Panel"}
-                >
-                  <Shield className="w-3 h-3 text-indigo-200" />
-                  <span>{isAdminView ? 'Calc' : 'Admin'}</span>
-                </button>
-              )}
-
-              {onLogout && (
-                <button
-                  onClick={onLogout}
-                  className="flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold bg-white-50 hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs transition cursor-pointer active:scale-95"
-                  title="Sign Out of Active Session"
-                >
-                  <LogOut className="w-3 h-3 text-rose-500" />
-                  <span>Logout</span>
-                </button>
-              )}
-            </div>
-          </div>
-
-          <div className="flex items-center gap-1.5 px-2 py-1.5 bg-slate-100 border border-slate-200/60 rounded-lg text-[10px] font-sans font-medium text-slate-600">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-            <span className="truncate">Cloud Synced: <span className="font-mono font-bold text-indigo-600">{currentUser}</span></span>
-          </div>
-        </div>
-      )}
-
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-slate-50/50 flex-wrap gap-2 shrink-0">
         <div className="flex items-center gap-2">
