@@ -351,7 +351,14 @@ export default function App() {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
+      const contentType = response.headers.get('content-type');
+      let data: any;
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        throw new Error(`Server returned non-JSON response (Status: ${response.status}). ${text.slice(0, 120)}`);
+      }
 
       if (!response.ok) {
         setAuthError(data.error || 'An error occurred during authentication.');
@@ -414,8 +421,8 @@ export default function App() {
         setIsAuthLoading(false);
       }, 500);
 
-    } catch (err) {
-      setAuthError('Could not establish connection to the verification server.');
+    } catch (err: any) {
+      setAuthError(`Connection Error: ${err?.message || err || 'Could not establish connection.'}`);
       setIsAuthLoading(false);
     }
   };
