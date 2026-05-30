@@ -1,0 +1,6 @@
+{
+  "name": "Scientific Calculator and Currency Converter",
+  "description": "An advanced scientific calculator featuring a detailed history log and real-time currency conversion rates.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
