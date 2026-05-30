@@ -198,7 +198,7 @@ export default function MediaVault({ onLock, vaultPasscode, onChangePasscode }: 
   const filteredVideos = items.filter(i => i.type === 'video');
 
   return (
-    <div id="vault-primary-card" className="bg-slate-950 text-slate-100 rounded-3xl border border-neutral-800 shadow-2xl p-6 flex flex-col h-full md:min-h-[580px] select-none relative overflow-hidden font-sans">
+    <div id="vault-primary-card" className="bg-slate-950 text-slate-100 rounded-3xl border border-neutral-800 shadow-2xl p-6 flex flex-col h-full min-h-0 select-none relative overflow-hidden font-sans">
       
       {/* Dynamic Background Disguise Elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full filter blur-3xl pointer-events-none" />
@@ -212,12 +212,12 @@ export default function MediaVault({ onLock, vaultPasscode, onChangePasscode }: 
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <h2 className="font-sans font-bold text-slate-100 tracking-tight text-base">iOS Secret Vault</h2>
+              <h2 className="font-sans font-bold text-slate-100 tracking-tight text-base">Vault</h2>
               <span className="text-[9px] bg-indigo-950/80 text-indigo-400 font-mono px-2 py-0.5 rounded-full border border-indigo-900 font-bold uppercase tracking-wider">
-                LOCK ACTIVE
+                ACTIVE
               </span>
             </div>
-            <p className="text-[10px] text-neutral-400 tracking-wide">Secure Passcode Disguise Folder</p>
+            <p className="text-[10px] text-neutral-400 tracking-wide">Secure Folder</p>
           </div>
         </div>
 
@@ -228,7 +228,7 @@ export default function MediaVault({ onLock, vaultPasscode, onChangePasscode }: 
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-500 hover:bg-orange-600 font-bold text-xs text-white transition duration-150 shadow-md shadow-orange-500/20 hover:scale-105"
         >
           <ArrowLeft className="w-3.5 h-3.5 stroke-[2.5]" />
-          Lock & Return To Calculator
+          Close & Lock
         </button>
       </div>
 
@@ -566,17 +566,6 @@ export default function MediaVault({ onLock, vaultPasscode, onChangePasscode }: 
             </form>
           </div>
         )}
-      </div>
-
-      {/* Safety Alert Disclaimer */}
-      <div className="bg-neutral-900 px-5 py-3 border-t border-neutral-800 flex items-center justify-between text-[11px] text-neutral-500 select-none">
-        <span className="flex items-center gap-1">
-          <ShieldAlert className="w-3.5 h-3.5 text-rose-500 animate-pulse shrink-0" />
-          End-to-End browser sandboxed encryption active.
-        </span>
-        <span className="font-mono text-[9px] bg-neutral-950 px-1.5 py-0.5 rounded border border-neutral-800">
-          SECURE STORAGE
-        </span>
       </div>
 
       {/* LIGHTBOX MODAL: FULL SCREEN PHOTO SLIDESHOW VIEWER */}

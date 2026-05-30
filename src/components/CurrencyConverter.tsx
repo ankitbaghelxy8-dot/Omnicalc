@@ -130,7 +130,7 @@ export default function CurrencyConverter({
   };
 
   return (
-    <div id="currency-converter-card" className="bg-white rounded-2xl border border-slate-200 shadow-xs p-5 flex flex-col h-full justify-between">
+    <div id="currency-converter-card" className="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-5 flex flex-col h-full min-h-0 justify-between overflow-y-auto w-full">
       <div>
         {/* Header */}
         <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">

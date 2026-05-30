@@ -60,12 +60,6 @@ export default function ScientificCalculator({
     }
 
     try {
-      // If the formula matches the passcode, show secure unlocked preview
-      if (exprStr.trim() === secretPasscode) {
-        setLivePreview('🔓 Unlock Vault');
-        return;
-      }
-
       // If the formula ends with a standard math sign, don't try to parse it
       if (/[+\-*/÷×(^]$/.test(exprStr)) {
         setLivePreview('');
@@ -249,37 +243,36 @@ export default function ScientificCalculator({
     <div
       ref={containerRef}
       onClick={handleContainerClick}
-      className="flex flex-col bg-black rounded-3xl border border-neutral-800 shadow-2xl overflow-hidden focus:outline-none focus:ring-1 focus:ring-neutral-700 text-white font-sans max-w-lg mx-auto"
+      className="flex flex-col bg-black rounded-3xl border border-neutral-800 shadow-2xl overflow-hidden focus:outline-none focus:ring-1 focus:ring-neutral-700 text-white font-sans max-w-lg mx-auto h-full min-h-0 w-full"
       tabIndex={0}
       id="ios-calculator-container"
     >
       {/* iOS Style Glassmorphic Screen */}
-      <div className="bg-black text-white p-6 pb-4 flex flex-col justify-end min-h-[170px] relative select-none">
+      <div className="bg-black text-white p-4 sm:p-6 pb-2.5 flex flex-col justify-end min-h-[140px] relative select-none shrink-0">
         
         {/* Camouflage Secure Vault Info bar */}
-        <div className="absolute top-4 left-5 right-5 flex justify-between items-center text-neutral-500 font-medium">
+        <div className="absolute top-3 left-4 right-4 flex justify-between items-center text-neutral-500 font-medium">
           <button
             id="ios-deg-rad-pill"
             onClick={(e) => { e.stopPropagation(); onModeToggle(); }}
-            className="text-[10px] font-bold rounded-full bg-neutral-900 border border-neutral-800/80 px-2.5 py-1 text-neutral-300 hover:bg-neutral-850 hover:text-white transition"
+            className="text-[10px] font-bold rounded-full bg-neutral-900 border border-neutral-800/80 px-2 py-0.5 text-neutral-300 hover:bg-neutral-850 hover:text-white transition"
           >
             {mode.toUpperCase()}
           </button>
           
-          <div className="flex items-center gap-1.5 text-[10px] uppercase font-semibold text-neutral-400">
-            <Lock className="w-3 h-3 text-amber-500" />
-            <span>Vault Protected</span>
+          <div className="text-[10px] text-neutral-600 font-mono">
+            Calculator Mode
           </div>
         </div>
 
         {/* Dynamic Formula Expression Input */}
-        <div className="font-sans text-xl text-neutral-400 text-right font-normal tracking-tight break-all cursor-text min-h-[32px] max-h-[64px] overflow-y-auto mb-1 mt-6">
+        <div className="font-sans text-xl text-neutral-400 text-right font-normal tracking-tight break-all cursor-text min-h-[28px] max-h-[50px] overflow-y-auto mb-1 mt-5">
           {expression || '0'}
         </div>
 
         {/* Interactive Highlight Real-Time / Vault Info Display */}
         {livePreview && !resultDisplay && !errorStatus && (
-          <div className={`font-mono text-base font-bold text-right mb-1 ${
+          <div className={`font-mono text-sm font-bold text-right mb-0.5 ${
             livePreview.includes('Unlock') ? 'text-emerald-400 animate-pulse' : 'text-orange-500'
           }`}>
             = {livePreview}
@@ -287,19 +280,19 @@ export default function ScientificCalculator({
         )}
 
         {errorStatus && (
-          <div className="font-sans text-sm text-rose-500 font-bold text-right mb-1">
+          <div className="font-sans text-xs text-rose-500 font-bold text-right mb-0.5">
             {errorStatus}
           </div>
         )}
 
         {/* Large Massive iPhone Output display text */}
-        <div id="calculator-result-value" className="font-sans text-4xl sm:text-5xl font-semibold tracking-tight text-right text-white select-all break-all h-14 mt-1 leading-none font-bold">
+        <div id="calculator-result-value" className="font-sans text-3xl sm:text-4xl font-semibold tracking-tight text-right text-white select-all break-all h-10 mt-0.5 leading-none font-bold">
           {resultDisplay ? `= ${resultDisplay}` : ''}
         </div>
       </div>
 
       {/* iPhone circular keys Layout Grid */}
-      <div className="p-6 bg-black flex-1 grid grid-cols-4 sm:grid-cols-5 gap-3.5 border-t border-neutral-900">
+      <div className="p-4 sm:p-5 bg-black flex-1 grid grid-cols-4 sm:grid-cols-5 gap-2.5 sm:gap-3 border-t border-neutral-900 min-h-0 overflow-hidden">
         
         {/* SCIENTIFIC EXTRAS - Hide/Show on extreme compact size or display in clean 5th column */}
         {/* Row 1 */}
@@ -536,15 +529,6 @@ export default function ScientificCalculator({
         </button>
       </div>
 
-      {/* Camouflaged Instructions banner */}
-      <div className="bg-neutral-950/80 px-6 py-3 border-t border-neutral-900/50 flex items-center justify-between text-[11px] text-zinc-500 select-none">
-        <span className="flex items-center gap-1">
-          <Info className="w-3.5 h-3.5" /> Quick Hint:
-        </span>
-        <span className="font-mono text-[10px] text-zinc-400">
-          Entering passcode followed by '=' unlocks secret media vault. Default is <strong className="text-orange-400 font-bold">{secretPasscode}</strong>
-        </span>
-      </div>
     </div>
   );
 }
